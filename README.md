@@ -13,3 +13,14 @@ Automation projects using Arduino for my IoT and Robotic lectures.
     </td>
   </tr>
  
+  <tr>
+    <td>
+      <a href="https://github.com/ProfessorFilipo/AutomacaoArduino/tree/master/RoboDirecional_Fase_I">Robô Direcionador de Labirinto - Fase I</a> - Protótipo de Robô capaz de achar a saída de um labirinto. 
+      <br />Fase I : apenas os sensorews de obstáculos.
+      <br />LCD 16x2.
+    </td>
+    <td>
+<img src="https://raw.githubusercontent.com/ProfessorFilipo/AutomacaoArduino/master/RoboDirecional_Fase_I/RoboDirecional_Fase_I_montagem_v1.PNG" alt="snapshot 1" height="200" width="300">       
+    </td>
+  </tr>
+</table>
