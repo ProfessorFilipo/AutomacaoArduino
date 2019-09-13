@@ -13,7 +13,7 @@
 Servo servo_8;
 const int distanciaLimite = 20;
 const int posicaoAberto   = 0;
-const int posicaoFechado  = 180;
+const int posicaoFechado  = 170;
 const int tempoAbertura   = 10000;
 
 const int triggerPin = 12;
@@ -42,6 +42,7 @@ void setup()
    // LEDs
    pinMode(10, OUTPUT); // Verde
    pinMode( 9, OUTPUT); // Vermelho
+   pinMode(13, OUTPUT); // LED da placa, para teste
    
   // pisca-pisca ao iniciar
   for(int i=0; i <10; i++)
@@ -57,20 +58,24 @@ void setup()
    digitalWrite(10, LOW);  // apaga LED verde
   
    servo_8.attach(8);
-   servo_8.write(posicaoAberto);
+   servo_8.write(posicaoFechado);
+   digitalWrite(13, LOW); // tampa fechada
+
+   Serial.begin(9600);
 }
 
 void loop()
 {
 
   // Le a distancia medida pelo sonar
-  int Distancia = 0.01723 * readUltrasonicDistance(triggerPin, echoPin);
-  if(Distancia <= distanciaLimite)
+  int Distancia = 0.01723 * readUltrasonicDistance(triggerPin, echoPin); Serial.println(Distancia);
+  if(Distancia <= distanciaLimite && Distancia != 0)
   {
     // objeto detectado. abre tampa da fruteira e a mantem aberta por 30 segundos
     digitalWrite( 9, LOW);  // apaga LED vermelho
     digitalWrite(10, HIGH); // acende LED verde
     servo_8.write(posicaoAberto); // abre tampa
+    digitalWrite(13, HIGH); 
     delay(tempoAbertura); // aguarda com a tampa aberta
     
     // inicia fechamento da tampa!
@@ -86,6 +91,7 @@ void loop()
     digitalWrite( 9, HIGH); // acende LED vermelho
     digitalWrite(10, LOW);  // apaga LED verde
     servo_8.write(posicaoFechado); // fecha tampa!
+    digitalWrite(13, LOW);
     
   }
  
